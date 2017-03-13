@@ -9,8 +9,17 @@ var options = {
 
 var callback = function(response) {
   console.log('In response handler callback!');
-  console.log('Response: ', response);
+
+  response.on('data', function(chunk) {
+    console.log('[-- CHUNK OF LENGTH ' + chunk.length + ' --]');
+    console.log(chunk.toString());
+  });
 }
+
+//It is now outputting the data as it comes in.
+// We've decided to appropriately label our response data
+// as chunk and are also printing the length of the string
+// just for the sake of curiosity.
 
 console.log('I\'m about to make the request!');
 
